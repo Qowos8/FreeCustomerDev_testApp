@@ -12,6 +12,9 @@ data class Announce(
 )
 @Serializable
 data class AnnounceResult(
+    @SerialName("total")
+    val total: Int,
+
     @SerialName("list")
     val list: List<Content>
 )
