@@ -10,4 +10,4 @@
 - Coroutines для асинхронного взаимодействия
 
 # Скриншоты  
-![merge_test](https://github.com/Qowos8/FreeCustomerDev_testApp/assets/89923159/21faf23e-4cbc-47a9-a73d-4d75f6e00817)
+![merge_test2](https://github.com/Qowos8/FreeCustomerDev_testApp/assets/89923159/fb2bfc5f-0cc6-4ccf-833d-c3c3cfca4ec6)
