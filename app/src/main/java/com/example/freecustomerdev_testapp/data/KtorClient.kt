@@ -1,4 +1,4 @@
-package com.example.freecustomerdev_testapp.network
+package com.example.freecustomerdev_testapp.data
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -9,10 +9,9 @@ import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-class KtorClient {
-    private val key = "ERgFN9eZ60nWBttY79"
-    private val secret = "Uf4w03jIsQMKJMks0jBF87E9vU45OYw04JJ0"
+class KtorClient: NetworkInterface {
     private val client = HttpClient(OkHttp){
+
         defaultRequest { url("https://api.bybit.com/") }
 
         install(ContentNegotiation){
@@ -21,7 +20,7 @@ class KtorClient {
             })
         }
     }
-    suspend fun getAnnounce(): Announce{
+    override suspend fun getAnnounce(): AnnounceApi{
         return client.get("v5/announcements/index?locale=en-US&limit=10").body()
     }
 }

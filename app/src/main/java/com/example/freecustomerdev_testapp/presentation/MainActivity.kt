@@ -1,4 +1,4 @@
-package com.example.freecustomerdev_testapp.list
+package com.example.freecustomerdev_testapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,11 +14,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,9 +34,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.freecustomerdev_testapp.AnnounceState
 import com.example.freecustomerdev_testapp.R
-import com.example.freecustomerdev_testapp.network.Announce
+import com.example.freecustomerdev_testapp.data.AnnounceApi
 import com.example.freecustomerdev_testapp.ui.theme.BackgroundColor
 import com.example.freecustomerdev_testapp.ui.theme.BlockColor
 import com.example.freecustomerdev_testapp.ui.theme.FreeCustomerDev_testAppTheme
@@ -61,17 +62,20 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AnnouncementsList(viewModel: MainViewModel) {
-    val announceState by viewModel.announceState.observeAsState(initial = AnnounceState.Loading)
+    val announceState by viewModel.announceState.observeAsState()
     when (announceState) {
-        is AnnounceState.Loading -> {}
+        is AnnounceState.Loading -> {
+            ShowLoading()
+        }
         is AnnounceState.Success -> {
-            BuildList(announceState)
+            BuildList(announceState as AnnounceState.Success)
         }
 
         is AnnounceState.Error -> {
             val errorMessage = (announceState as AnnounceState.Error).errorMessage
             ShowErrorMessage(errorMessage)
         }
+        else -> {}
     }
 }
 
@@ -135,7 +139,7 @@ fun BuildList(announceState: AnnounceState) {
 }
 
 @Composable
-fun BuildCard(announce: Announce, id: Int) {
+fun BuildCard(announce: AnnounceApi, id: Int) {
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 16.dp),
         modifier = Modifier
@@ -162,7 +166,15 @@ fun BuildCard(announce: Announce, id: Int) {
         )
     }
 }
-
+@Composable
+fun ShowLoading(){
+    CircularProgressIndicator(
+        modifier = Modifier
+            .padding(vertical = 240.dp)
+            .width(120.dp)
+            .height(120.dp)
+    )
+}
 @Composable
 fun ShowErrorMessage(errorMessage: String) {
     Row(

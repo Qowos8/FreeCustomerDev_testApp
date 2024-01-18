@@ -1,23 +1,22 @@
-package com.example.freecustomerdev_testapp.network
+package com.example.freecustomerdev_testapp.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Announce(
+data class AnnounceApi(
     @SerialName("retCode")
     val retCode: Int,
     @SerialName("result")
-    val result: AnnounceResult
+    val result: AnnounceResultApi
 )
 @Serializable
-data class AnnounceResult(
-
+data class AnnounceResultApi(
     @SerialName("list")
-    val list: List<Content>
+    val list: List<ContentApi>
 )
 @Serializable
-data class Content(
+data class ContentApi(
     @SerialName("title")
     val title: String,
     @SerialName("description")

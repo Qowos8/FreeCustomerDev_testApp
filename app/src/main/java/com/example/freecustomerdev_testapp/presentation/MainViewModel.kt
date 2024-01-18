@@ -1,12 +1,11 @@
-package com.example.freecustomerdev_testapp.list
+package com.example.freecustomerdev_testapp.presentation
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.freecustomerdev_testapp.AnnounceState
-import com.example.freecustomerdev_testapp.network.KtorClient
+import com.example.freecustomerdev_testapp.data.KtorClient
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
