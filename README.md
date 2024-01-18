@@ -1,7 +1,7 @@
 # FreeCustomerDev_testApp
 
 Приложение для Android, которое будет отображать список последних объявлений с API Bybit  
-Данные брались с сайта https://api.bybit.com
+Данные брались с сайта https://api.bybit.com  
 Построено с использованием:  
 - Kotlin
 - MVVM архитектуры    
